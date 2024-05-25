@@ -13,7 +13,7 @@ func loadRoutes() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
 
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
+	router.Get("/", func(w http.ResponseWriter, r *http.Request) { // <<-- anonymous function
 		w.WriteHeader(http.StatusOK)
 	})
 
@@ -30,5 +30,4 @@ func loadOrderRoutes(router chi.Router) {
 	router.Get("/{id}", orderHandler.GetByID)
 	router.Put("/{id}", orderHandler.UpdateByID)
 	router.Delete("/{id}", orderHandler.DeleteByID)
-
 }

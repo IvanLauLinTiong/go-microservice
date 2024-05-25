@@ -36,6 +36,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+	"os/signal"
 
 	"github.com/IvanLauLinTiong/go-microservice/application"
 )
@@ -43,7 +45,17 @@ import (
 func main() {
 	app := application.New()
 
-	err := app.Start(context.TODO())
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+
+	// call cancel at this end of current function
+	// same as calling it at the end
+	defer cancel()
+	// defer func() { fmt.Println("cancel 1..."); cancel()}()
+
+
+	// err := app.Start(context.TODO())
+	err := app.Start(ctx)
+
 	if err != nil {
 		fmt.Println("failed to start the app:", err)
 	}
