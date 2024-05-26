@@ -47,7 +47,7 @@ func main() {
 
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 
-	// call cancel at this end of current function
+	// call cancel at this end of current scope
 	// same as calling it at the end
 	defer cancel()
 	// defer func() { fmt.Println("cancel 1..."); cancel()}()
