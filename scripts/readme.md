@@ -17,6 +17,18 @@ docker exec -it <myrediscontainer> redis-cli
 curl -X POST -d '{"customer_id":"'$(uuidgen)'", "line_items":[{"item_id":"'$(uuidgen)'", "quantity":5, "price":1999}]}' localhost:3000/orders
 ```
 
+List all orders:
+
+```cmd
+curl -sS localhost:3000/orders | python -m json.tool
+curl -sS localhost:3000/orders | jq
+```
+
+Get order by id:
+
+```cmd
+curl -sS localhost:3000/orders/{order_id} | python -m json.tool
+```
 
 3. Redis commands
 
