@@ -7,6 +7,7 @@ docker run --rm -p 6379:6379 redis:5.0
 ```
 
 Intereact with container:
+
 ```cmd
 docker exec -it <myrediscontainer> redis-cli
 ```
@@ -30,14 +31,28 @@ Get order by id:
 curl -sS localhost:3000/orders/{order_id} | python -m json.tool
 ```
 
+Update order status by id:
+
+```cmd
+curl -X PUT -d '{"status":"shipped"}'-sS localhost:3000/orders/{order_id} | python -m json.tool
+```
+
+Delete order status by id:
+
+```cmd
+curl -X DELETE -sS localhost:3000/orders/{order_id}
+```
+
 3. Redis commands
 
 GET keys:
+
 ```cmd
 GET "order:your_key"
 ```
 
 View set members `orders`:
+
 ```cmd
 SMEMBERS orders
 ```
